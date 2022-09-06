@@ -2,6 +2,63 @@
 
 ## HEAD
 
+## 5.1.2
+
+Released Jan. 08, 2022
+
+### User-facing changes
+- [BUGFIX] wheels are not compressed with ZIP_DEFLATED ([#366](https://github.com/pypa/auditwheel/issues/366), [#367](https://github.com/pypa/auditwheel/pull/367))
+
+## 5.1.1
+
+Released Jan. 03, 2022
+
+### User-facing changes
+- [BUGFIX] building from a github archive fails ([#321](https://github.com/pypa/auditwheel/issues/321), [#361](https://github.com/pypa/auditwheel/pull/361))
+- [BUGFIX] include tests in SDist ([#321](https://github.com/pypa/auditwheel/issues/321), [#362](https://github.com/pypa/auditwheel/pull/362))
+
+## 5.1.0
+
+Released Jan. 03, 2022
+
+### User-facing changes
+- [BUGFIX] libc version failed to be detected on CentOS8 based docker image ([#352](https://github.com/pypa/auditwheel/issues/352), [#353](https://github.com/pypa/auditwheel/pull/353))
+- [FEATURE] Add support for `SOURCE_DATE_EPOCH` ([#346](https://github.com/pypa/auditwheel/issues/346), [#348](https://github.com/pypa/auditwheel/pull/348))
+- [FEATURE] Add `manylinux_2_28` & `manylinux_2_31` policies ([#356](https://github.com/pypa/auditwheel/pull/356))
+- [DOC] Reflect dependency on patchelf in README ([#355](https://github.com/pypa/auditwheel/pull/355))
+
+### Housekeeping
+- Fix setuptools warnings seen during builds (deprecation notices) ([#337](https://github.com/pypa/auditwheel/pull/337))
+- Fix SDist includes files it shouldn't include ([#338](https://github.com/pypa/auditwheel/pull/338))
+- Add `build` & `test-dist` nox sessions ([#336](https://github.com/pypa/auditwheel/pull/336))
+- Add musllinux integration tests ([#317](https://github.com/pypa/auditwheel/pull/317))
+- Rename the default branch from master to main ([#342](https://github.com/pypa/auditwheel/pull/342))
+- Clean before build in test_manylinux ([#347](https://github.com/pypa/auditwheel/pull/347))
+- Test with python 3.10 ([#345](https://github.com/pypa/auditwheel/pull/345))
+- Move from `pbr` to `setuptools_scm`  ([#358](https://github.com/pypa/auditwheel/pull/358))
+- Add nox `develop` session  ([#359](https://github.com/pypa/auditwheel/pull/359))
+
+## 5.0.0
+
+Released Sep. 18, 2021
+
+### User-facing changes
+- [BUGFIX] Remove undeclared dependency on pkg_resources ([#307](https://github.com/pypa/auditwheel/pull/307))
+- [BUGFIX] Don't installs self in tox deps ([#319](https://github.com/pypa/auditwheel/pull/319))
+- [FEATURE] Add support for musllinux ([#305](https://github.com/pypa/auditwheel/issues/305), [#311](https://github.com/pypa/auditwheel/pull/311), [#315](https://github.com/pypa/auditwheel/pull/315))
+- [FEATURE] Replace `unzip` usage with Python's `zipfile` ([#258](https://github.com/pypa/auditwheel/issues/258), [#324](https://github.com/pypa/auditwheel/pull/324))
+- [FEATURE] `libz.so.1` is now whitelisted (with some symbols blacklisted) ([#152](https://github.com/pypa/auditwheel/issues/152), [#161](https://github.com/pypa/auditwheel/issues/161), [#334](https://github.com/pypa/auditwheel/pull/334))
+
+### Housekeeping
+- Use python slim images to run tests ([#308](https://github.com/pypa/auditwheel/pull/308))
+- Manylinux2014 now uses devtoolset-10 ([#316](https://github.com/pypa/auditwheel/pull/316))
+- Use pre-commit to lint the code base ([#331](https://github.com/pypa/auditwheel/pull/331))
+  - Run pyupgrade --py36-plus ([#325](https://github.com/pypa/auditwheel/pull/325))
+  - Run isort --py 36 --profile black ([#328](https://github.com/pypa/auditwheel/pull/328))
+  - Run black ([#329](https://github.com/pypa/auditwheel/pull/329))
+- Move mypy config to pyproject.toml ([#326](https://github.com/pypa/auditwheel/pull/326))
+- Move to an `src` layout ([#332](https://github.com/pypa/auditwheel/pull/332))
+
 ## 4.0.0
 
 Released May. 5, 2021
@@ -15,12 +72,12 @@ Released Apr. 3, 2021
 ### User-facing changes
 - [BUGFIX] Patch RPATHs of non-Python extension dependencies ([#136](https://github.com/pypa/auditwheel/issues/136), [#298](https://github.com/pypa/auditwheel/pull/298))
 - [BUGFIX] Ensure policies in `policy.json` are compliant with PEP600 ([#287](https://github.com/pypa/auditwheel/pull/287))
-  - This removes 2 non existing symbols from manylinux1 i686 policy and removes ncurses librairies from manylinux1 whitelist. 
+  - This removes 2 non existing symbols from manylinux1 i686 policy and removes ncurses librairies from manylinux1 whitelist.
 - [FEATURE] Use PEP600 policy names ([#288](https://github.com/pypa/auditwheel/pull/288), [#297](https://github.com/pypa/auditwheel/pull/297))
   - The platform tag passed to `auditwheel repair` `--plat` argument can use either the PEP600 tag or the legacy tag. The repaired wheel will get both platform tags.
   - Inform about aliases in `auditwheel repair --help`
 - [FEATURE] Always repair as a single wheel ([#289](https://github.com/pypa/auditwheel/pull/289))
-  - Add argument `--only-plat` to `auditwheel repair` for those who were keeping only the lowest priority tag wheel (i.e. the one requested by `--plat` argument). 
+  - Add argument `--only-plat` to `auditwheel repair` for those who were keeping only the lowest priority tag wheel (i.e. the one requested by `--plat` argument).
 - [FEATURE] Add manylinux_2_27 policy ([#299](https://github.com/pypa/auditwheel/issues/299), [#300](https://github.com/pypa/auditwheel/pull/300))
 - [FEATURE] Add libexpat.so.1 to whitelisted libraries starting with manylinux2010 ([#152](https://github.com/pypa/auditwheel/issues/152), [#301](https://github.com/pypa/auditwheel/pull/301))
 
@@ -63,9 +120,9 @@ Released Dec. 6, 2020
 Released Jul. 1, 2020
 
 ### User-facing changes
-- [FEATURE] Ensure that system-copied libraries are writable before running patchelf 
-  ([https://github.com/pypa/auditwheel/pull/237](#237))
-- [FEATURE] Preserve RPATH in extension modules ([https://github.com/pypa/auditwheel/pull/245](#245))
+- [FEATURE] Ensure that system-copied libraries are writable before running patchelf
+  ([#237](https://github.com/pypa/auditwheel/pull/237))
+- [FEATURE] Preserve RPATH in extension modules ([#245](https://github.com/pypa/auditwheel/pull/245))
 
 ## 3.1.1
 
@@ -86,7 +143,7 @@ Released Apr. 25, 2020
 Released Jan. 29, 2020
 
 ### User-facing changes
-- [FEATURE] Put libraries in `$WHEELNAME.libs` to avoid vendoring multiple copies 
+- [FEATURE] Put libraries in `$WHEELNAME.libs` to avoid vendoring multiple copies
   of the same library ([#90](https://github.com/pypa/auditwheel/pull/90))
 
 ### Housekeeping

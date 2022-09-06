@@ -1,5 +1,6 @@
 import os
-from auditwheel.tmpdirs import InTemporaryDirectory, InGivenDirectory
+
+from auditwheel.tmpdirs import InGivenDirectory, InTemporaryDirectory
 
 
 def test_intemporarydirectory():
@@ -20,7 +21,7 @@ def test_intemporarydirectory_name():
 
 def test_ingivendirectory(tmp_path):
     cwd = os.getcwd()
-    expected_path = os.path.join(str(tmp_path), 'foo')
+    expected_path = os.path.join(str(tmp_path), "foo")
     with InGivenDirectory(expected_path) as path:
         assert os.path.isdir(path)
         assert os.path.samefile(path, os.getcwd())

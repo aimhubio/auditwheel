@@ -1,7 +1,8 @@
-import setuptools.command.build_ext
-from setuptools import setup, find_packages, Distribution
-from setuptools.extension import Extension, Library
 import os
+
+import setuptools.command.build_ext
+from setuptools import Distribution, find_packages, setup
+from setuptools.extension import Extension, Library
 
 # despite its name, setuptools.command.build_ext.link_shared_object won't
 # link a shared object on Linux, but a static library and patches distutils
@@ -50,7 +51,7 @@ build_ext_cmd.setup_shlib_compiler()
 
 
 def libname(name):
-    """ gets 'name' and returns something like libname.cpython-37m-darwin.so"""
+    """gets 'name' and returns something like libname.cpython-37m-darwin.so"""
     filename = build_ext_cmd.get_ext_filename(name)
     fn, ext = os.path.splitext(filename)
     return build_ext_cmd.shlib_compiler.library_filename(fn, libtype)
